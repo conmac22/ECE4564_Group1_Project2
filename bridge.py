@@ -44,11 +44,10 @@ if __name__ == "__main__":
     #collection.insert_one(document)
 
     # Send to Repository RPi
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.1.51'))
+    credentials = pika.PlainCredentials('user1', 'user1')
+
+    connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.1.51', 5672, '/', credentials))
     channel = connection.channel()
-    channel.queue_declare(queue='Classrooms')
-    channel.basic_publish(exchange='Goodwin', routing_key='Classrooms', body=message)
+    channel.queue_declare(queue='Noise', durable = True)
+    channel.basic_publish(exchange='Library', routing_key='Noise', body=message)
     connection.close()
-
-
-
