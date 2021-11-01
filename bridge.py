@@ -57,7 +57,7 @@ if __name__ == "__main__":
             for word in command_message[1:]:
                 message += word + ' '
                 
-            messge = message.replace('\r', '').replace('\n','')
+            message = message.replace('\r', '').replace('\n','')
             # Build Message
             document = {"Action":action, "Place":place, "MsgID":MsgID, "Subject":subject, "Message":message}
         elif action == 'c':
